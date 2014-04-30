@@ -81,6 +81,18 @@ class AWTMouse {
 		_click(InputEvent.BUTTON1_MASK, 0, false);		
 	}
 
+    public void clickAndHold() {
+        robot.pressModifiers(0);
+        robot.mousePress(InputEvent.BUTTON1_MASK);
+        robot.waitForIdle();
+    }
+
+    public void releaseClick() {
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+        robot.releaseModifiers(0);
+        robot.waitForIdle();
+    }
+
 	public void wheel(int direction, int steps){
 		for(int i=0;i<steps;i++){
 			robot.mouseWheel(direction);

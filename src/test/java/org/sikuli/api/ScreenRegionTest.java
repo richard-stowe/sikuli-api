@@ -1,10 +1,11 @@
 package org.sikuli.api;
 
-import java.io.IOException;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.io.IOException;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
 
 public class ScreenRegionTest extends BaseTest {
 	
@@ -28,6 +29,5 @@ public class ScreenRegionTest extends BaseTest {
 		ScreenRegion comboboxRegion = labelRegion.getRelativeScreenRegion(labelRegion.getBounds().width, -10, 100, labelRegion.getBounds().height+20);
 		assertThat("integer", ((DefaultScreenRegion) comboboxRegion).extractInteger(), is(11));
 	}
-	
 
 }

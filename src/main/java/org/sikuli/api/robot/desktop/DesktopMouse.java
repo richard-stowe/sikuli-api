@@ -7,7 +7,18 @@ import org.sikuli.api.robot.Mouse;
 
 public class DesktopMouse implements Mouse {
 
-	private AWTMouse getAWTMouse(ScreenLocation screenLoc){
+    public static final int DEFAULT_HOVER_TRANSITION_MILLIS = 500;
+    private final int hoverTransitionMillis;
+
+    public DesktopMouse() {
+        this(DEFAULT_HOVER_TRANSITION_MILLIS);
+    }
+
+    public DesktopMouse(int hoverTransitionMillis) {
+        this.hoverTransitionMillis = hoverTransitionMillis;
+    }
+
+    private AWTMouse getAWTMouse(ScreenLocation screenLoc){
 		return AWTDesktop.getMouse(screenLoc);
 	}
 
@@ -30,7 +41,7 @@ public class DesktopMouse implements Mouse {
 			// if the move is within the same screen
 			// move the cursor smoothly to the destination
 			ScreenLocation src = getLocation();
-			srcMouse.smoothMove(src, dest, 500);
+            srcMouse.smoothMove(src, dest, hoverTransitionMillis);
 		}		
 	}
 	
@@ -51,7 +62,16 @@ public class DesktopMouse implements Mouse {
 		getAWTMouse(screenLoc).drop();  
 	}
 
-	@Override
+    @Override
+    public void dragAndDrop(ScreenLocation from, ScreenLocation to, int transitionMillis) {
+        hover(from);
+        AWTMouse awtMouse = getAWTMouse(from);
+        awtMouse.clickAndHold();
+        awtMouse.smoothMove(from, to, transitionMillis);
+        awtMouse.releaseClick();
+    }
+
+    @Override
 	public void rightClick(ScreenLocation screenLoc) {
 		hover(screenLoc);
 		getAWTMouse(screenLoc).rightClick();

@@ -22,6 +22,15 @@ public interface Mouse {
 	 */	
 	public void drop(ScreenLocation screenLoc);
 
+    /**
+     * Drag from and to given ScreenLocations using the configurable transition time
+     *
+     * @param from the ScreenLocation to start the action
+     * @param to the ScreenLocation to finish the action
+     * @param transitionMillis transition time in millis
+     */
+    public void dragAndDrop(ScreenLocation from, ScreenLocation to, int transitionMillis);
+
 	/**
 	 * Left-click on a given screen location
 	 * 

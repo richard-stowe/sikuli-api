@@ -27,3 +27,8 @@ API and includes several new functions that were not available in the original S
 
   *  Java Runtime Environment (JRE) or Java Development Kit (JDK) version 1.6 or newer
   * (Optional) Apache Maven version 2.0.10 or newer, if you want to build it from source.
+
+## Windows Specific Requirements
+
+  * OpenCV binary to be extracted and following directory to be added to the PATH env variable:
+        "<OPEN_CV_HOME>\build\x64\vc12\bin"
